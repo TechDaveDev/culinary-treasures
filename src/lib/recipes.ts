@@ -1,0 +1,48 @@
+import { Recipe } from "@/infrastructure/types/recipe";
+
+export const recipes: Recipe[] = [
+  {
+    id: 1,
+    title: 'Lentejas de la Abuela',
+    slug: 'lentejas-de-la-abuela',
+    image: 'https://images.unsplash.com/photo-1599362841284-70656a090442?q=80&w=1974&auto=format&fit=crop',
+    time: '1h 15min',
+    difficulty: 'Fácil',
+    servings: 6,
+    ingredients: ['500g de lentejas', '1 chorizo', '1 morcilla', '1 zanahoria', '1 patata', '1/2 pimiento verde', '1/2 cebolla', '2 dientes de ajo', 'Aceite de oliva', 'Sal', 'Pimentón dulce'],
+    steps: ['Dejar las lentejas en remojo la noche anterior.', 'En una olla, sofreír las verduras picadas.', 'Añadir el chorizo y la morcilla.', 'Incorporar las lentejas escurridas, cubrir con agua y cocer.', 'Añadir la patata en trozos y sazonar.', 'Cocer a fuego lento hasta que todo esté tierno.'],
+  },
+  {
+    id: 2,
+    title: 'Pollo al Horno con Patatas',
+    slug: 'pollo-al-horno-con-patatas',
+    image: 'https://images.unsplash.com/photo-1628105238243-4a116f86b460?q=80&w=2070&auto=format&fit=crop',
+    time: '1h 30min',
+    difficulty: 'Media',
+    servings: 4,
+    ingredients: ['1 pollo entero', '1kg de patatas', '1 cebolla', '3 dientes de ajo', 'Limón', 'Vino blanco', 'Romero', 'Tomillo', 'Aceite de oliva', 'Sal', 'Pimienta'],
+    steps: ['Precalentar el horno a 190°C.', 'Preparar una cama de patatas y cebolla en rodajas.', 'Salpimentar el pollo por dentro y por fuera, introducir limón y hierbas aromáticas.', 'Colocar el pollo sobre las patatas.', 'Regar con vino blanco y aceite.', 'Hornear durante 1 hora y 20 minutos o hasta que esté dorado y cocido.'],
+  },
+  {
+    id: 3,
+    title: 'Tarta de Manzana Casera',
+    slug: 'tarta-de-manzana-casera',
+    image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=2070&auto=format&fit=crop',
+    time: '1h',
+    difficulty: 'Fácil',
+    servings: 8,
+    ingredients: ['1 lámina de masa quebrada', '4 manzanas Golden', '100g de azúcar', '50g de mantequilla', 'Mermelada de albaricoque', 'Canela en polvo'],
+    steps: ['Forrar un molde con la masa quebrada.', 'Pelar y cortar 3 manzanas en dados, saltearlas con mantequilla y azúcar.', 'Rellenar la base de la tarta con las manzanas salteadas.', 'Cortar la manzana restante en láminas finas y decorar la superficie.', 'Hornear a 180°C durante 40 minutos.', 'Pintar con mermelada de albaricoque caliente al sacar del horno.'],
+  },
+  {
+    id: 4,
+    title: 'Sopa de Tomate Clásica',
+    slug: 'sopa-de-tomate-clasica',
+    image: 'https://images.unsplash.com/photo-1598214886381-3753e14d3515?q=80&w=1983&auto=format&fit=crop',
+    time: '45min',
+    difficulty: 'Fácil',
+    servings: 4,
+    ingredients: ['1kg de tomates maduros', '1 cebolla', '2 dientes de ajo', '1L de caldo de verduras', 'Albahaca fresca', 'Aceite de oliva', 'Sal', 'Pimienta'],
+    steps: ['Asar los tomates, la cebolla y el ajo en el horno.', 'Licuar los vegetales asados con el caldo de verduras.', 'Pasar la mezcla por un colador para una textura fina.', 'Calentar la sopa en una olla, sazonar con sal y pimienta.', 'Servir caliente con hojas de albahaca fresca.'],
+  },
+];

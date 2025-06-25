@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Arroz con pollo",
+    "slug": "arroz-con-pollo",
+    "ingredients": [
+      "...",
+      "..."
+    ],
+    "steps": [
+      "...",
+      "..."
+    ],
+    "image": "/images/recipes/arroz-pollo.jpg",
+    "time": "45 min",
+    "difficulty": "Fácil"
+  }
+]
