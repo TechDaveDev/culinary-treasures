@@ -1,6 +1,21 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { recipes } from '@/lib/recipes';
+import { Metadata } from 'next';
+
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const recipe = recipes.find(recipe => recipe.slug === params.slug);
+  return {
+    title: `${recipe?.title || 'Receta no encontrada'} | Tesoros Culinarios`,
+    description: `Aprende a preparar ${recipe?.title || 'una deliciosa receta'}.`,
+  };
+}
 
 export async function generateStaticParams() {
   return recipes.map((recipe) => ({
@@ -8,7 +23,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function RecipeDetailPage({ params }: { params: { slug: string } }) {
+export default async function RecipeDetailPage({ params }: Props) {
 
   const recipe = recipes.find(recipe => recipe.slug === params.slug);
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Recipe } from '@/infrastructure/types/recipe';
+import Image from 'next/image';
 
 const difficultyColors = {
   Fácil: 'bg-green-100 text-green-800',
@@ -12,9 +13,10 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
     <Link href={`/recetas/${recipe.slug}`} className="group block">
       <div className="border border-orange-200/80 rounded-2xl overflow-hidden h-full flex flex-col bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
         <div className="relative">
-          <img
+          <Image
             src={recipe.image}
             alt={recipe.title}
+            fill
             className="w-full h-48 object-cover"
           />
           <div className={`absolute top-3 right-3 px-2 py-1 text-xs font-semibold rounded-full ${difficultyColors[recipe.difficulty]}`}>
