@@ -70,10 +70,14 @@ export default function Header() {
 
           {/* desktop */}
           <nav className="hidden md:flex gap-6 items-center">
-            <Link href="/" className={`font-medium transition-colors ${isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200'}`}>Inicio</Link>
-            <a href={getLinkHref('recetas-populares')} className={`font-medium transition-colors ${isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200'}`}>Recetas Populares</a>
-            <a href={getLinkHref('sobre-el-proyecto')} className={`font-medium transition-colors ${isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200'}`}>Sobre el Proyecto</a>
-            <Link href="/recetas" className={`font-medium transition-colors ${isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200'}`}>Recetas</Link>
+            {
+              isHomePage
+                ? <a href={getLinkHref('inicio')} className={`font-medium transition-colors ${isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200'}`}>Inicio</a>
+                : <Link href="/" className={`font-medium transition-colors ${'text-orange-900 hover:text-orange-600'}`}>Inicio</Link>
+            }
+            <a href={getLinkHref('recetas-populares')} className={`font-medium transition-colors ${!isHomePage ? 'text-orange-900 hover:text-orange-600' : (isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200')}`}>Recetas Populares</a>
+            <a href={getLinkHref('sobre-el-proyecto')} className={`font-medium transition-colors ${!isHomePage ? 'text-orange-900 hover:text-orange-600' : (isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200')}`}>Sobre el Proyecto</a>
+            <Link href="/recetas" className={`font-medium transition-colors ${!isHomePage ? 'text-orange-900 hover:text-orange-600' : (isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200')}`}>Recetas</Link>
           </nav>
 
           {/* mobile */}
@@ -96,10 +100,14 @@ export default function Header() {
 
       <div className={`fixed top-0 right-0 h-full w-full max-w-xs bg-orange-50 z-50 shadow-xl transition-transform duration-300 ease-in-out ${menuIsActive ? 'translate-x-0' : 'translate-x-full'}`}>
         <nav className="flex flex-col items-start justify-center h-full gap-6 p-8">
-          <Link href="/" onClick={closeMenu} className="text-3xl font-bold text-orange-900 hover:text-orange-600">Inicio</Link>
-          <a href={getLinkHref('recetas-populares')} onClick={closeMenu} className="text-3xl font-bold text-orange-900 hover:text-orange-600">Recetas Populares</a>
-          <a href={getLinkHref('sobre-el-proyecto')} onClick={closeMenu} className="text-3xl font-bold text-orange-900 hover:text-orange-600">Sobre el Proyecto</a>
-          <Link href="/recetas" onClick={closeMenu} className="text-3xl font-bold text-orange-900 hover:text-orange-600">Recetas</Link>
+          {
+            isHomePage
+              ? <a href={getLinkHref('inicio')} onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Inicio</a>
+              : <Link href="/" onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Inicio</Link>
+          }
+          <a href={getLinkHref('recetas-populares')} onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Recetas Populares</a>
+          <a href={getLinkHref('sobre-el-proyecto')} onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Sobre el Proyecto</a>
+          <Link href="/recetas" onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Recetas</Link>
         </nav>
       </div>
     </>
