@@ -3,11 +3,12 @@ import Image from 'next/image';
 import { recipes } from '@/lib/recipes';
 import { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
+type Props = {
   params: { slug: string };
-}): Promise<Metadata> {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const recipe = recipes.find(recipe => recipe.slug === params.slug);
 
   if (!recipe) {
@@ -29,11 +30,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function RecipeDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function RecipeDetailPage({ params }: Props) {
   const recipe = recipes.find(recipe => recipe.slug === params.slug);
 
   if (!recipe) {
