@@ -3,11 +3,6 @@ import Image from 'next/image';
 import { recipes } from '@/lib/recipes';
 import { Metadata } from 'next';
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 export async function generateMetadata({
   params,
 }: {
