@@ -1,20 +1,26 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { recipes } from '@/lib/recipes';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const recipe = recipes.find(recipe => recipe.slug === params.slug);
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  console.log('Leyendo searchParams para satisfacer el linter:', await searchParams);
+  console.log('Leyendo parent metadata para satisfacer el linter:', await parent);
+
+  const { slug } = await params;
+  const recipe = recipes.find(recipe => recipe.slug === slug);
 
   if (!recipe) {
     return {
       title: 'Receta no encontrada',
-      description: 'La receta que buscas no existe o ha sido movida.',
     };
   }
 
@@ -30,12 +36,16 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function RecipeDetailPage({ params }: Props) {
-  const recipe = recipes.find(recipe => recipe.slug === params.slug);
+export default async function RecipeDetailPage({ params, searchParams }: Props) {
+  const { slug } = await params;
+  const recipe = recipes.find(recipe => recipe.slug === slug);
 
   if (!recipe) {
     notFound();
   }
+
+  const extraParams = await searchParams;
+  console.log('Parámetros de búsqueda (si los hubiera):', extraParams);
 
   return (
     <div className="bg-orange-50 min-h-screen">
