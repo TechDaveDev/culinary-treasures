@@ -4,9 +4,8 @@ import { recipes } from '@/lib/recipes';
 import { Metadata } from 'next';
 
 type Props = {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
