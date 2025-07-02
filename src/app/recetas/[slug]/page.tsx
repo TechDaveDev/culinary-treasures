@@ -8,11 +8,23 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const recipe = recipes.find(recipe => recipe.slug === params.slug);
+
+  if (!recipe) {
+    return {
+      title: 'Receta no encontrada',
+      description: 'La receta que buscas no existe o ha sido movida.',
+    };
+  }
+
   return {
-    title: `${recipe?.title || 'Receta no encontrada'} | Tesoros Culinarios`,
-    description: `Aprende a preparar ${recipe?.title || 'una deliciosa receta'}.`,
+    title: `${recipe.title} | Tesoros Culinarios`,
+    description: `Aprende a preparar ${recipe.title}.`,
   };
 }
 
@@ -22,8 +34,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function RecipeDetailPage({ params }: Props) {
-
+export default async function RecipeDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const recipe = recipes.find(recipe => recipe.slug === params.slug);
 
   if (!recipe) {
