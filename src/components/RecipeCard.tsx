@@ -12,12 +12,13 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
     <Link href={`/recetas/${recipe.slug}`} className="group block">
       <div className="border border-orange-200/80 rounded-2xl overflow-hidden h-full flex flex-col bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div className="relative">
+        <div className="relative w-full h-48">
           <Image
             src={recipe.image}
             alt={recipe.title}
             fill
-            className="w-full h-48 object-cover"
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className={`absolute top-3 right-3 px-2 py-1 text-xs font-semibold rounded-full ${difficultyColors[recipe.difficulty]}`}>
             {recipe.difficulty}
