@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { recipes } from '@/lib/recipes';
 import { Metadata, ResolvingMetadata } from 'next';
+import { getRecipeBySlug, getRecipes } from '@/lib/sanity.queries';
+import { SanityRecipe } from '@/infrastructure/types/recipe';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -12,11 +13,11 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  console.log('Leyendo searchParams para satisfacer el linter:', await searchParams);
-  console.log('Leyendo parent metadata para satisfacer el linter:', await parent);
+  console.log('searchParams:', await searchParams);
+  console.log('parent metadata:', await parent);
 
   const { slug } = await params;
-  const recipe = recipes.find(recipe => recipe.slug === slug);
+  const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {
     return {
@@ -31,21 +32,22 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  return recipes.map((recipe) => ({
+  const recipes = await getRecipes();
+  return recipes.map((recipe: SanityRecipe) => ({
     slug: recipe.slug,
   }));
 }
 
 export default async function RecipeDetailPage({ params, searchParams }: Props) {
   const { slug } = await params;
-  const recipe = recipes.find(recipe => recipe.slug === slug);
+  const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {
     notFound();
   }
 
-  const extraParams = await searchParams;
-  console.log('Parámetros de búsqueda (si los hubiera):', extraParams);
+  const _extraParams = await searchParams;
+  console.log('Parámetros de búsqueda:', _extraParams);
 
   return (
     <div className="bg-orange-50 min-h-screen">
@@ -87,7 +89,7 @@ export default async function RecipeDetailPage({ params, searchParams }: Props) 
               <aside className="md:col-span-1">
                 <h2 className="text-2xl font-bold text-orange-900 border-b-2 border-orange-200 pb-2 mb-4">Ingredientes</h2>
                 <ul className="space-y-2 list-disc list-inside text-orange-800">
-                  {recipe.ingredients.map((ingredient, index) => (
+                  {recipe.ingredients?.map((ingredient: string, index: number) => (
                     <li key={index}>{ingredient}</li>
                   ))}
                 </ul>
@@ -96,7 +98,7 @@ export default async function RecipeDetailPage({ params, searchParams }: Props) 
               <div className="md:col-span-2">
                 <h2 className="text-2xl font-bold text-orange-900 border-b-2 border-orange-200 pb-2 mb-4">Preparación</h2>
                 <ol className="space-y-4 text-orange-900/90 leading-relaxed">
-                  {recipe.steps.map((step, index) => (
+                  {recipe.steps?.map((step: string, index: number) => (
                     <li key={index} className="flex gap-4">
                       <span className="flex-shrink-0 bg-orange-500 text-white h-8 w-8 rounded-full flex items-center justify-center font-bold">
                         {index + 1}
