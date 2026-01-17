@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
 import RecipeCard from '@/components/RecipeCard';
-import { recipes } from '@/lib/recipes';
+import { getPopularRecipes } from '@/lib/sanity.queries';
 
-export default function PopularRecipes() {
-  const popularRecipes = recipes.slice(0, 3);
+export default async function PopularRecipes() {
+  const popularRecipes = await getPopularRecipes();
 
   return (
     <section id="recetas-populares" className="py-20 w-full bg-white">
@@ -16,7 +16,7 @@ export default function PopularRecipes() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {popularRecipes.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
+            <RecipeCard key={recipe.slug} recipe={recipe} />
           ))}
         </div>
 

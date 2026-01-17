@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Recipe } from '@/infrastructure/types/recipe';
+import { SanityRecipe } from '@/infrastructure/types/recipe';
 import Image from 'next/image';
 
 const difficultyColors = {
@@ -8,7 +8,7 @@ const difficultyColors = {
   Difícil: 'bg-red-100 text-red-800',
 };
 
-export default function RecipeCard({ recipe }: { recipe: Recipe }) {
+export default function RecipeCard({ recipe }: { recipe: SanityRecipe }) {
   return (
     <Link href={`/recetas/${recipe.slug}`} className="group block">
       <div className="border border-orange-200/80 rounded-2xl overflow-hidden h-full flex flex-col bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
