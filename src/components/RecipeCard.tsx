@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { SanityRecipe } from '@/infrastructure/types/recipe';
 import Image from 'next/image';
+
+import { SanityRecipe } from '@/infrastructure/types/recipe';
 
 const difficultyColors = {
   Fácil: 'bg-green-100 text-green-800',

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import RecipeCard from '@/components/RecipeCard';
+
 import { getRecipes } from '@/lib/sanity.queries';
+import RecipeCard from '@/components/RecipeCard';
 import { SanityRecipe } from '@/infrastructure/types/recipe';
 
 const IconSearch = () => (
@@ -75,7 +76,7 @@ export default function RecipesPage() {
 
         <section>
           {loading ? (
-            <div className="text-center py-16 text-orange-800">Cargando tesoros culinarios...</div>
+            <div className="text-center py-16 text-orange-800">Cargando recetas...</div>
           ) : filteredRecipes.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredRecipes.map(recipe => (

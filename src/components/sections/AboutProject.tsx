@@ -9,7 +9,7 @@ export default function AboutProject() {
             Tesoros Culinarios es un proyecto que nació de la idea de compartir las recetas de las comidas que acompañaron a mi familia a lo largo de los años.
           </p>
           <p className="text-lg text-orange-800 leading-relaxed">
-            Me emociona saber que cualquier persona, en cualquier parte del mundo, podrá preparar las comidas que yo tanto disfruté. ¡Buen Provecho! 🍽️
+            Me emociona saber que cualquier persona, en cualquier parte del mundo, podrá preparar las comidas que yo tanto disfruté =)
           </p>
         </div>
       </div>

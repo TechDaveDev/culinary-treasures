@@ -1,5 +1,5 @@
-import { SanityRecipe } from "@/infrastructure/types/recipe"
 import { client } from "@/sanity/lib/client"
+import { SanityRecipe } from "@/infrastructure/types/recipe"
 
 export async function getRecipes(): Promise<SanityRecipe[]> {
   return await client.fetch(`*[_type == "recipe"]{

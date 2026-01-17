@@ -62,7 +62,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out px-4 ${isScrolled ? 'pt-4' : 'pt-6'}`}>
+      <header className={`fixed w-full top-0 left-0 z-60 transition-all duration-300 ease-in-out px-4 ${isScrolled ? 'pt-4' : 'pt-6'}`}>
         <div className={`container mx-auto flex justify-between items-center rounded-xl px-4 py-2 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-gray-100/80 backdrop-blur-sm shadow-lg' : 'bg-transparent'}`}>
           <div className={`${isScrolled ? '' : 'text-white'}`}>
             <Logo />
@@ -77,13 +77,13 @@ export default function Header() {
             }
             <a href={getLinkHref('recetas-populares')} className={`font-medium transition-colors ${!isHomePage ? 'text-orange-900 hover:text-orange-600' : (isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200')}`}>Recetas Populares</a>
             <a href={getLinkHref('sobre-el-proyecto')} className={`font-medium transition-colors ${!isHomePage ? 'text-orange-900 hover:text-orange-600' : (isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200')}`}>Sobre el Proyecto</a>
-            <Link href="/recetas" className={`font-medium transition-colors ${!isHomePage ? 'text-orange-900 hover:text-orange-600' : (isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200')}`}>Recetas</Link>
+            <Link href="/recetas" className={`font-medium transition-colors ${!isHomePage ? 'text-orange-900 hover:text-orange-600' : (isScrolled ? 'text-orange-900 hover:text-orange-600' : 'text-white hover:text-orange-200')}`}>Todas las Recetas</Link>
           </nav>
 
           {/* mobile */}
           <button
             onClick={handleMenu}
-            className={`md:hidden p-2 rounded-md transition-colors z-50 ${!isHomePage ? 'text-orange-900 hover:bg-orange-100' : (isScrolled ? 'text-orange-900 hover:bg-orange-100' : 'text-white hover:bg-white/20')}`}
+            className={`md:hidden p-2 rounded-md transition-colors z-50 ${!isHomePage ? 'text-orange-900 hover:bg-orange-100' : (menuIsActive ? 'text-orange-900 hover:bg-orange-100' : (isScrolled ? 'text-orange-900 hover:bg-orange-100' : 'text-white hover:bg-white/20'))}`}
             aria-label="Abrir menú"
           >
             {menuIsActive ? <IconClose /> : <IconMenu />}
@@ -107,7 +107,7 @@ export default function Header() {
           }
           <a href={getLinkHref('recetas-populares')} onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Recetas Populares</a>
           <a href={getLinkHref('sobre-el-proyecto')} onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Sobre el Proyecto</a>
-          <Link href="/recetas" onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Recetas</Link>
+          <Link href="/recetas" onClick={closeMenu} className="text-2xl font-bold text-orange-900 hover:text-orange-600">Todas las Recetas</Link>
         </nav>
       </div>
     </>
