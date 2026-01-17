@@ -1,6 +1,7 @@
+import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { Metadata, ResolvingMetadata } from 'next';
+
 import { getRecipeBySlug, getRecipes } from '@/lib/sanity.queries';
 import { SanityRecipe } from '@/infrastructure/types/recipe';
 
